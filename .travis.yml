@@ -1,4 +1,6 @@
 language: ruby
-rbenv:
- - 2.4.1
- - jruby
+rvm:
+  - 2.2
+  - jruby
+  - 2.4.1p111
+  
