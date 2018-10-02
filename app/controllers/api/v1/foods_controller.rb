@@ -4,8 +4,9 @@ class Api::V1::FoodsController < ApplicationController
   end
 
   def show
-    if Food.find_by(id: params[:id])
-      render json: Food.find(params[:id])
+    food = Food.find_by(id: params[:id])
+    if food
+      render json: food
     else
       render status: 404
     end
@@ -26,6 +27,16 @@ class Api::V1::FoodsController < ApplicationController
       render json: food
     else
       render status: 400
+    end
+  end
+
+  def destroy
+    food = Food.find_by(id: params[:id])
+    if food
+      food.destroy
+      render status: 204
+    else
+      render status: 404
     end
   end
 
