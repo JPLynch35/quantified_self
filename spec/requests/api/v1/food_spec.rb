@@ -33,4 +33,17 @@ describe 'Food API' do
       expect(food[:calories]).to eq(100)
     end
   end
+  context 'POST /api/v1/foods' do
+    it 'creates a food' do
+      json_payload = {name: 'salad', calories: 50}
+      post '/api/v1/foods', params: json_payload
+
+      expect(response).to be_successful
+
+      food = JSON.parse(response.body, symbolize_names: true)
+
+      expect(food[:name]).to eq('salad')
+      expect(food[:calories]).to eq(50)
+    end
+  end
 end
