@@ -1,7 +1,13 @@
 language: ruby
 rvm:
-  - "2.4.1"
-env:
-  - DB=postgresql
+  - 2.4.1
+before_script:
+  - bundle exec rake db:create --all
+  - bundle exec rake db:migrate
 script:
   - bundle exec rspec
+services:
+  - postgresql
+notifications:
+  email: false
+  
