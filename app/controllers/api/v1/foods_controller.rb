@@ -5,7 +5,7 @@ class Api::V1::FoodsController < ApplicationController
 
   def show
     food = Food.find_by(id: params[:id])
-    if food
+    if !!food
       render json: food
     else
       render status: 404
@@ -32,7 +32,7 @@ class Api::V1::FoodsController < ApplicationController
 
   def destroy
     food = Food.find_by(id: params[:id])
-    if food
+    if !!food
       food.destroy
       render status: 204
     else
