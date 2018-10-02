@@ -17,8 +17,8 @@ describe 'Food API' do
       food = foods.first
 
       expect(foods.count).to eq(4)
-      expect(food).to have_key(:name)
-      expect(food).to have_key(:calories)
+      expect(food[:name]).to eq('banana')
+      expect(food[:calories]).to eq(150)
     end
   end
 end
