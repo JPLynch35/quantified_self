@@ -83,4 +83,21 @@ describe 'Food API' do
       expect(response.status).to eq(400)
     end
   end
+  context 'DELETE /api/v1/foods/:id' do
+    it 'deletes a food' do
+      delete '/api/v1/foods/3'
+
+      expect(response).to be_successful
+      expect(response.status).to eq(204)
+
+      expect(Food.all.count).to eq(3)
+    end
+    it 'returns 404 if it cant delete a food' do
+      delete '/api/v1/foods/7'
+
+      expect(response.status).to eq(404)
+
+      expect(Food.all.count).to eq(4)
+    end
+  end
 end
