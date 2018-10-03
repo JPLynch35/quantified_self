@@ -54,17 +54,20 @@ describe 'Food API' do
 
   context 'POST /api/v1/meals/:meal_id/foods/:id' do
     it 'adds the food with :id to the associated meal' do
-      post '/api/v1/meals/1/foods/2'
+      expect(Meal.first.foods.count).to eq(2)
+
+      post '/api/v1/meals/1/foods/4'
 
       expect(response).to be_successful
 
       expected =  {
-                    "message": "Successfully added #{@food2.name} to #{@meal1.name}"
+                    "message": "Successfully added #{@food4.name} to #{@meal1.name}"
                   }
       receieved_response = JSON.parse(response.body, symbolize_names: true)
 
       expect(receieved_response).to eq(expected)
       expect(response.status).to eq(201)
+      expect(Meal.first.foods.count).to eq(3)
     end
     it 'returns 404 if the meal cant be found' do
       post '/api/v1/meals/7/foods/2'
@@ -73,6 +76,34 @@ describe 'Food API' do
     end
     it 'returns 404 if the food cant be found' do
       post '/api/v1/meals/1/foods/8'
+
+      expect(response.status).to eq(404)
+    end
+  end
+
+  context 'DELETE /api/v1/meals/:meal_id/foods/:id' do
+    it 'deletes the food with :id to the associated meal' do
+      expect(Meal.first.foods.count).to eq(2)
+
+      delete '/api/v1/meals/1/foods/2'
+
+      expect(response).to be_successful
+
+      expected =  {
+                    "message": "Successfully removed #{@food2.name} to #{@meal1.name}"
+                  }
+      receieved_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(receieved_response).to eq(expected)
+      expect(Meal.first.foods.count).to eq(1)
+    end
+    it 'returns 404 if the meal cant be found' do
+      delete '/api/v1/meals/7/foods/2'
+
+      expect(response.status).to eq(404)
+    end
+    it 'returns 404 if the food cant be found' do
+      delete '/api/v1/meals/1/foods/8'
 
       expect(response.status).to eq(404)
     end

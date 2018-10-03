@@ -12,8 +12,19 @@ class Api::V1::Meals::FoodsController < ApplicationController
     if !!check_for_id
       meal = Meal.find(params[:meal_id])
       food = Food.find(params[:id])
-      MealFood.create(meal_id: meal, food_id: food)
+      MealFood.create(meal_id: meal.id, food_id: food.id)
       render status: 201, json: {message: "Successfully added #{food.name} to #{meal.name}"}
+    else
+      render status: 404
+    end
+  end
+
+  def destroy
+    if !!check_for_id
+      meal = Meal.find(params[:meal_id])
+      food = Food.find(params[:id])
+      MealFood.where(meal_id: meal.id, food_id: food.id).destroy_all
+      render json: {message: "Successfully removed #{food.name} to #{meal.name}"}
     else
       render status: 404
     end
