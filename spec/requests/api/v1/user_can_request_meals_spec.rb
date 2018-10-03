@@ -31,4 +31,24 @@ describe 'Food API' do
       expect(meal[:foods].last[:calories]).to eq(100)
     end
   end
+
+  context 'GET /api/v1/meals/:meal_id/foods' do
+    it 'returns a list of all foods associated with a meal' do
+      get '/api/v1/meals/1/foods'
+
+      expect(response).to be_successful
+
+      foods = JSON.parse(response.body, symbolize_names: true)
+      food = foods.first
+
+      expect(foods.count).to eq(2)
+      expect(food[:name]).to eq('banana')
+      expect(food[:calories]).to eq(150)
+    end
+    it 'returns 404 if it cant find the meal with corresponding id' do
+      get '/api/v1/meals/8/foods'
+
+      expect(response.status).to eq(404)
+    end
+  end
 end
