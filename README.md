@@ -167,6 +167,15 @@ This application is tested with RSpec.  In order to run this test suite, simply 
 rspec
 ```
 
+## Setting up Docker
+This application is currently set up to run from localhost, although the files required for Docker are included.  In order to set up the application for Docker, open the config/database.yml file and uncomment the lines of code shown below.
+```
+## Activate the 3 lines below for for Docker use
+# host: db
+# username: postgres
+# password:
+```
+
 ## Built With
 
 * Ruby 2.4.1- The code language
