@@ -1,5 +1,5 @@
-class FavoriteFoodsController < ApplicationController
+class Api::V1::FavoriteFoodsController < ApplicationController
   def index
-    render json: FavoriteFood.find_favorites
+    render json: Food.favorites, each_serializer: FavoriteFoodSerializer
   end
 end

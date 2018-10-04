@@ -36,12 +36,12 @@ describe 'Food API' do
       expect(fav_food1[:foods].first[:mealsWhenEaten]).to eq([@meal1.name, @meal2.name, @meal3.name])
       expect(fav_food2[:timesEaten]).to eq(2)
       expect(fav_food2[:foods].count).to eq(2)
-      expect(fav_food2[:foods].first[:name]).to eq('banana')
-      expect(fav_food2[:foods].first[:calories]).to eq(150)
-      expect(fav_food2[:foods].first[:mealsWhenEaten]).to eq([@meal1.name, @meal3.name])
-      expect(fav_food2[:foods].last[:name]).to eq('strawberries')
-      expect(fav_food2[:foods].last[:calories]).to eq(200)
-      expect(fav_food2[:foods].last[:mealsWhenEaten]).to eq([@meal2.name, @meal3.name])
+      expect(fav_food2[:foods].first[:name]).to eq('strawberries')
+      expect(fav_food2[:foods].first[:calories]).to eq(200)
+      expect(fav_food2[:foods].first[:mealsWhenEaten]).to eq([@meal2.name, @meal3.name])
+      expect(fav_food2[:foods].last[:name]).to eq('banana')
+      expect(fav_food2[:foods].last[:calories]).to eq(150)
+      expect(fav_food2[:foods].last[:mealsWhenEaten]).to eq([@meal1.name, @meal3.name])
     end
   end
 end
