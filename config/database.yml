@@ -21,7 +21,7 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-  ## Activate the 3 lines below for for Docker use
+  ## Activate the 3 lines of code below for Docker use
   # host: db
   # username: postgres
   # password:
